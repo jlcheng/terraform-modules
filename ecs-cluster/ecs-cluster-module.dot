@@ -1,0 +1,11 @@
+digraph ecs_graph {
+	subgraph cluster_2 {
+		ecs_cluster -> ecs_task_execution_role;		
+		label = "ecs_module";
+		color=black;
+	}
+	vpc -> subnets -> ecs_service;
+	alb -> ecs_service;
+	ecs_task_execution_role -> ecs_service;
+}
+

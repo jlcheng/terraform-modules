@@ -1,0 +1,21 @@
+digraph ecs_graph {
+	ranksep = 1;
+	rankdir =LR;
+	lb_target_group -> load_balancer;
+	{cloudwatch_group, task_definition, ecs_cluster_arn, private_subet_ids, security_group} -> service;
+	service -> load_balancer;		
+	subgraph cluster1 {
+		label=lb_listener_rule;
+		lb_listener -> lb_target_group -> "foo.api.example.com" [dir=none];
+	}
+
+	subgraph clusterrole {
+		label=task_role;
+		role -> policy_attachment -> policy  [dir=none];
+	}
+	policy_attachment -> service;
+
+	{task_role, execution_role} -> service;
+
+}
+

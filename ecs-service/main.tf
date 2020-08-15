@@ -130,7 +130,7 @@ resource "aws_alb_target_group" "service_tg" {
 }
 
 
-// Associate the hellow world target group with LB
+// Associate the target group with LB
 resource "aws_lb_listener_rule" "service_rule" {
   listener_arn = var.lb_listener_arn
 

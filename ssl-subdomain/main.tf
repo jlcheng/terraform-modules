@@ -11,7 +11,7 @@ resource "aws_acm_certificate" "target_cert" {
   validation_method         = "DNS"
 
   lifecycle {
-    create_before_destroy = var.create_before_destroy
+    create_before_destroy = true
   }
 
   tags = local.tags
@@ -25,7 +25,7 @@ resource "aws_route53_record" "cert_validation_cname" {
   ttl     = 60
 }
 
-resource "aws_acm_certificate_validation" "jchengdev_org" {
+resource "aws_acm_certificate_validation" "target_cert" {
   certificate_arn         = aws_acm_certificate.target_cert.arn
   validation_record_fqdns = [aws_route53_record.cert_validation_cname.fqdn]
 }

@@ -13,11 +13,6 @@ variable "sub_domain_alternative_names" {
   description = "A list of subject alternative names, e.g., ['*.api.example.com', 'auth.api.example.com', 'stg.api.example.com']"
 }
 
-variable "create_before_destroy" {
-  type        = bool
-  description = "See aws_acm_certificate"
-}
-
 variable "zone_id" {
   type        = string
   description = "The zone_id that the sub_domain_name belongs to"
